@@ -176,6 +176,10 @@ function getEmptySpaceCount(gameBoard) {
  * matrix, make the move on the gameBoard and return the gameBoard.
  */
 function makeMove(playerString, moveObject, gameBoard) {
+	var i = moveObject.x;
+	var m = moveObject.y;
+	gameBoard[i][m]= playerString;
+	return gameBoard;
 
 }
 
@@ -185,6 +189,33 @@ function makeMove(playerString, moveObject, gameBoard) {
  * gameBoard matrix. If there is no winner than the function should return null.
  */
 function getWinner(gameBoard) {
+	if (gameBoard[0][0]===gameBoard[0][1] && gameBoard[0][1]===gameBoard[0][2]){
+		return gameBoard[0][0];
+	}
+	if (gameBoard[1][0]===gameBoard[1][1] && gameBoard[1][1]===gameBoard[1][2]){
+		return gameBoard[1][0];
+	}
+	if (gameBoard[2][0]===gameBoard[2][1] && gameBoard[2][1]===gameBoard[2][2]){
+		return gameBoard[2][0];
+	}
+	if (gameBoard[0][0]===gameBoard[1][0] && gameBoard[1][0]===gameBoard[2][0]){
+		return gameBoard[0][0];
+	}
+	if (gameBoard[1][0]===gameBoard[1][1] && gameBoard[1][1]===gameBoard[1][2]){
+		return gameBoard[1][0];
+	}
+	if (gameBoard[2][0]===gameBoard[2][1] && gameBoard[2][1]===gameBoard[2][2]){
+		return gameBoard[1][0];
+	}
+	if (gameBoard[0][0]===gameBoard[1][1] && gameBoard[1][1]===gameBoard[2][2]){
+		return gameBoard[0][0];
+	}
+	if (gameBoard[2][0]===gameBoard[1][1] && gameBoard[1][1]===gameBoard[0][2]){
+		return gameBoard[2][0];
+	}
+	
+
+	
 
 }
 
@@ -228,12 +259,22 @@ function parseMove(moveString) {
  * If there are no errors then the function should return the move object.
  */
 function validateMove(moveObject, gameBoard) {
-	if ((0<moveObject.x>2) || (0<moveObject.y>2)){ 
-		return 'Invalid move: the coordinates are outside the game board';
-	}
-	if (gameBoard[x][y]!==' ') {
-		return 'Invalid move: that spot is already taken';
-	}
+		
+		
+
+		if ((0>moveObject.x >2) || (0>moveObject.y >2)){ 
+			return 'Invalid move: the coordinates are outside the game board';
+		}
+		else if (gameBoard[moveObject.x][moveObject.y]!==' ') {
+			return 'Invalid move: that spot is already taken';
+		}
+		else {
+			return{
+				x:oveObject.x,
+				y:moveObject.y
+			}
+
+		}
 
 	
 
